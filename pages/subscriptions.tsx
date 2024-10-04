@@ -48,9 +48,12 @@ export default function Subscriptions() {
         ...values,
       })
 
+      if (!values.subscription_id) throw new Error("Subscription ID is missing")
+
       await PaypalService.createSubscription({
         paypalSubscriptionId: paypalSubscriptionId,
         user: newUser,
+        subscription_id: values.subscription_id
       })
 
       router.push("/profil")

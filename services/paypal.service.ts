@@ -6,15 +6,17 @@ export const PaypalService = {
   createSubscription: async ({
     paypalSubscriptionId,
     user,
+    subscription_id
   }: {
     paypalSubscriptionId: string
     user: Partial<User>
+    subscription_id: string
   }) => {
     try {
       await axios.post("/api/userSubscriptions/create", {
         user_id: user.id,
         paypal_subscription_id: paypalSubscriptionId,
-        subscription_id: user.subscription_id,
+        subscription_id: subscription_id,
         active: "1",
       })
     } catch (error) {

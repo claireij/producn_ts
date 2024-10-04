@@ -57,9 +57,14 @@ function Registration() {
       try {
         if (!values.paypalSubscriptionId)
           throw new Error("Paypal subscription id missing.")
+
+        if(!values.subscription_id)
+          throw new Error("Subscription ID missing")
+        
         await PaypalService.createSubscription({
           paypalSubscriptionId: values.paypalSubscriptionId,
           user: newUser,
+          subscription_id: values.subscription_id
         })
       } catch (err) {
         const error = ensureError(err)

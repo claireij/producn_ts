@@ -14,7 +14,9 @@ export async function middleware(req: NextApiRequest) {
 
 export const config = {
   matcher: [
-    "/api/users/:path*",
+    "/api/users/get/:path*",
+    "/api/users/confirm-email/:path*",
+    "/api/users/update",
     "/api/paypal/:path*",
     "/api/questiontree/:path*",
   ],
