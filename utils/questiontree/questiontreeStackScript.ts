@@ -1,4 +1,4 @@
-import { Question } from "../../../models/questiontree"
+import { Question } from "../../models/questiontree"
 import questiontreeStack from "./questiontreeStack"
 
 const previousQuestion = new questiontreeStack()

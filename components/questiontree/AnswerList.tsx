@@ -35,6 +35,7 @@ export const AnswerList = ({
         {filteredAnswers.map((answer) => {
           return (
             <li
+              key={answer.id}
               onClick={() =>
                 handleClickedAnswer({
                   answerId: answer.id,

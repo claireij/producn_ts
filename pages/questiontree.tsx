@@ -2,7 +2,7 @@ import { Layout } from "@components/Layout"
 import {
   newQuestion,
   returnToPreviousQuestion,
-} from "./lib/questiontree/questiontreeStackScript"
+} from "../utils/questiontree/questiontreeStackScript"
 import { useState } from "react"
 import { Middle } from "@components/questiontree/Middle"
 import { ResultDiv } from "@components/questiontree/Result"
@@ -40,7 +40,7 @@ export default function QuestionTree() {
     queryFn: () => QuestionTreeService.getAnswers(questionId),
   })
 
-  const { data: subscription } = useQuery({
+  const { data: subscription, isLoading: isLoadingSubscription } = useQuery({
     queryKey: ["subscription"],
     queryFn: () => PaypalService.getSubscription(session?.user?.id),
     enabled: !!session?.user,
@@ -94,7 +94,7 @@ export default function QuestionTree() {
   return (
     <Layout
       title="Question Tree"
-      isLoading={status === "loading"}
+      isLoading={status === "loading" || isLoadingSubscription}
       shouldHaveAccess={!!session && !!session?.user?.email && !!subscription}
     >
       {showStart && <Start onClickStart={handleClickStart} />}

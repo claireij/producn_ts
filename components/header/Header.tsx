@@ -3,7 +3,7 @@ import { useState } from "react"
 import { GrMenu } from "react-icons/gr"
 
 import { LoginButton } from "./LoginButton"
-import { Menu } from "@components/_general/menu/Menu"
+import { Menu } from "@components/_general/Menu"
 import Head from "next/head"
 import Image from "next/image"
 import { Drawer } from "@components/_general/Drawer"
@@ -46,7 +46,7 @@ export const Header = ({ title }: HeaderInterface) => {
       key: "faq",
       label: (
         <Link href="/faqs" className="header-nav-link">
-          FAQ
+          FAQs
         </Link>
       ),
     },
@@ -80,6 +80,7 @@ export const Header = ({ title }: HeaderInterface) => {
             onClick={() => {
               setOpen(!open)
             }}
+            className="cursor-pointer"
           />
         </div>
 

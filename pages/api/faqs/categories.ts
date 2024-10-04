@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { sequelize } from "../sequelize"
-import { FaqCategory } from "@api_models/faqCategory.model"
-import { Faq } from "@api_models/faq.model"
+import { FaqCategory } from "@api_models/index"
+import { Faq } from "@api_models/index"
 import { ensureError } from "@utils/general.utils"
 import { handleSequelizeError } from "@api_utils/general.utils"
 

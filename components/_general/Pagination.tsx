@@ -22,7 +22,7 @@ export const Pagination = ({
   const elementClassNames = "flex justify-center items-center w-10 h-10"
   const disabledClassNames = "hidden"
 
-  if (total === 0) return
+  if (total === 0 || total <= pageSize) return
 
   return (
     <ul className="flex gap-2 justify-center my-5">
@@ -31,7 +31,7 @@ export const Pagination = ({
           setCurrentPage(currentPage - 1)
           onChange(currentPage - 1)
         }}
-        className={`${elementClassNames} ${currentPage === 1 ? disabledClassNames : ""}`}
+        className={`${elementClassNames} ${currentPage === 1 ? disabledClassNames : ""} cursor-pointer`}
       >
         <MdNavigateBefore />
       </li>
@@ -39,7 +39,7 @@ export const Pagination = ({
       {Array.from({ length: totalPages }, (_, index) => (
         <li
           key={index}
-          className={`${elementClassNames} ${currentPage === index + 1 ? activeClassNames : ""}`}
+          className={`${elementClassNames} ${currentPage === index + 1 ? activeClassNames : ""} cursor-pointer`}
           onClick={() => {
             setCurrentPage(index + 1)
             onChange(index + 1)
@@ -54,7 +54,7 @@ export const Pagination = ({
           setCurrentPage(currentPage + 1)
           onChange(currentPage + 1)
         }}
-        className={`${elementClassNames} ${currentPage === totalPages ? disabledClassNames : ""}`}
+        className={`${elementClassNames} ${currentPage === totalPages ? disabledClassNames : ""} cursor-pointer`}
       >
         <MdNavigateNext />
       </li>

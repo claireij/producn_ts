@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize"
 import { sequelize } from "../../pages/api/sequelize"
-import { Faq } from "./faq.model"
 
 export const FaqCategory = sequelize.define(
   "FaqCategory",
@@ -22,8 +21,6 @@ export const FaqCategory = sequelize.define(
     timestamps: true,
   },
 )
-
-FaqCategory.hasMany(Faq, { foreignKey: "category_id" })
 ;(async () => {
   await FaqCategory.sync({ force: false })
 })()

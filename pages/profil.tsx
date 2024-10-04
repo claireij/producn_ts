@@ -105,6 +105,8 @@ export default function Profil() {
 
   const date = moment(user?.createdAt).format(dateFormat)
 
+  const { password: _password, ...userWithoutPassword } = user ?? {}
+
   return (
     <Layout
       title="Profil"
@@ -137,7 +139,11 @@ export default function Profil() {
 
       <section className="mb-5">
         <Divider text="Profile Info"></Divider>
-        <Form form={form} onFinish={handleUserUpdate} initialValues={user}>
+        <Form
+          form={form}
+          onFinish={handleUserUpdate}
+          initialValues={userWithoutPassword}
+        >
           <EditField
             title="Name"
             isOpen={edit.name}

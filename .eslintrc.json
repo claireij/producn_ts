@@ -25,6 +25,7 @@
     "quotes": ["error", "double"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
-    "prettier/prettier": ["error", { "singleQuote": false }]
+    "prettier/prettier": ["error", { "singleQuote": false }],
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
   }
 }

@@ -51,8 +51,12 @@ export const UserService = {
         ...(userData.firstname && { firstname: userData.firstname }),
         ...(userData.lastname && { lastname: userData.lastname }),
         ...(userData.password && { password: userData.password }),
-        ...(userData.retargeting && { retargeting: userData.retargeting }),
-        ...(userData.newsletter && { newsletter: userData.newsletter }),
+        ...(userData.retargeting !== undefined && {
+          retargeting: userData.retargeting,
+        }),
+        ...(userData.newsletter !== undefined && {
+          newsletter: userData.newsletter,
+        }),
         ...(userData.subscription && { subscription: userData.subscription }),
         ...(userData.subscription_id && {
           subscription_id: userData.subscription_id,

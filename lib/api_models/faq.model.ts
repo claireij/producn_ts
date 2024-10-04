@@ -29,8 +29,6 @@ export const Faq = sequelize.define(
     timestamps: true,
   },
 )
-
-// Faq.belongsTo(FaqCategory, { foreignKey: 'category_id' });
 ;(async () => {
   await Faq.sync({ force: false })
 })()

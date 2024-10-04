@@ -13,7 +13,7 @@ export const Tag = ({ name, handleClick, active }: TagInterface) => {
       <input type="checkbox" className="hidden" name={name} id={name} />
       <label
         htmlFor={name}
-        className={`px-4 py-2 ${color} rounded-full text-white`}
+        className={`px-4 py-2 ${color} rounded-full text-white cursor-pointer`}
         onClick={handleClick}
       >
         {name}

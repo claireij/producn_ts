@@ -12,7 +12,7 @@ interface MenuInterface {
 
 export const Menu = ({ mode = "horizontal", items }: MenuInterface) => {
   return (
-    <ul className={`menu--${mode} menu`}>
+    <ul className={`${mode === "vertical" ? "w-[256px]" : "h-[256px]"} menu`}>
       {items.map((item) => {
         return <li key={item.key}>{item.label}</li>
       })}
