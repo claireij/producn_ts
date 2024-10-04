@@ -14,7 +14,7 @@
 
 ## Project Overview
 
-**Musician's Problem Solver** is a web application designed to assist musicians in solving various problems they may encounter. The application features a **question tree** that guides users through a series of questions, leading to tailored solutions. In addition, it includes a **blog** section where users can read articles on various topics related to music and a **FAQs** page for quick answers to common inquiries.
+**Producn** is a web application designed to assist musicians in solving various problems they may encounter. The application features a **question tree** that guides users through a series of questions, leading to tailored solutions. In addition, it includes a **blog** section where users can read articles on various topics related to music and a **FAQs** page for quick answers to common inquiries.
 
 ## Features
 
@@ -169,27 +169,17 @@ You can find the app under producn.com
 
 ## Database Schema
 
-- user
-The `User` table stores all information about the user
-- userSubscription
-THe `UserSubscription` table stores all the subscription orders (active and inactive) of users.
+- `User`: stores all information about the user
+- `UserSubscription`: stores all the subscription orders (active and inactive) of users.
 
-- subscription
-The `Subscription` table stores all possible subscriptions in Producn (e.g. Pro monthly)
+- `Subscription`: stores all possible subscriptions in Producn (e.g. Pro monthly)
 
-- blogArticle
-The `BlogArticle` table stores blog articles answers.
-- blogCategory
-The `VlogCategory` table categorizes blog articles for better organization and retrieval.
+- `BlogArticle`: stores blog articles answers.
+- `BlogCategory`: categorizes blog articles for better organization and retrieval.
 
-- faq
-The `Faq` table stores frequently asked questions and their corresponding answers.
-- faqCategory
-The `FaqCategory` table categorizes FAQs for better organization and retrieval.
+- `Faq`: stores frequently asked questions and their corresponding answers.
+- `FaqCategory`: categorizes FAQs for better organization and retrieval.
 
-- question
-The `Question` table stores all the questions of the questiontree.
-- result
-The `Result` table stores all the results of the questiontree.
-- answer
-The `Answer` table stores all the answers of the questiontree.
+- `Question`: stores all the questions of the questiontree.
+- `Result`: stores all the results of the questiontree.
+- `Answer`: stores all the answers of the questiontree.
