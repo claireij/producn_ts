@@ -33,7 +33,7 @@ export const PaypalPayment = ({
     _data,
     actions,
   ) => {
-    const subscription = form.getFieldValue({ name: "subscription" })
+    const subscription = form.getFieldValue({ name: "subscription_id" })
 
     const paypalSubscriptionPlan = paypalSubscriptionPlans.find(
       (element) => element.subscription_id == subscription,
