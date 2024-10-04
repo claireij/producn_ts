@@ -28,7 +28,7 @@ export const PaypalService = {
   getSubscription: async (userId: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/userSubscriptions/getActiveSubscription/${userId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/userSubscriptions/getActiveSubscription/${userId}`,
       )
       return response.data
     } catch (error) {

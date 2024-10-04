@@ -1,7 +1,9 @@
-import NextAuth from "next-auth"
+import NextAuth, { Session, User } from "next-auth"
+import { JWT } from "next-auth/jwt"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { AuthOptions } from "next-auth"
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -11,7 +13,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         const res = await fetch(
-          "http://localhost:3000/api/auth/check-user-credentials",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/check-user-credentials`,
           {
             method: "POST",
             body: JSON.stringify(credentials),
@@ -32,21 +34,19 @@ export const authOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user: User }) {
       if (user) {
         token.id = user.id
         token.email = user.email
-        token.name = user.name
         token.image = user.image
       }
       return token
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       session.user = {
         id: token.id,
         email: token.email,
-        name: token.name,
-        image: token.image
+        image: token.image,
       }
       return session
     },

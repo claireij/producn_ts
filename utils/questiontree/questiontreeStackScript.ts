@@ -1,7 +1,7 @@
 import { Question } from "../../models/questiontree"
 import questiontreeStack from "./questiontreeStack"
 
-const previousQuestion = new questiontreeStack()
+const previousQuestion = new questiontreeStack<string>()
 
 let currentQuestion: string
 
@@ -18,7 +18,7 @@ export function newQuestion(questionId: Question["id"]) {
 }
 
 export function returnToPreviousQuestion() {
-  currentQuestion = previousQuestion.pop()
+  currentQuestion = previousQuestion.pop() || ""
   showCurrentQuestion("BACK: ")
   return currentQuestion
 }

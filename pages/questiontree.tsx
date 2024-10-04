@@ -42,7 +42,7 @@ export default function QuestionTree() {
 
   const { data: subscription, isLoading: isLoadingSubscription } = useQuery({
     queryKey: ["subscription"],
-    queryFn: () => PaypalService.getSubscription(session?.user?.id),
+    queryFn: () => PaypalService.getSubscription(session?.user?.id || ""),
     enabled: !!session?.user,
   })
 

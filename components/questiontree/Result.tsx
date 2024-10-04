@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 import { QuestionTreeService } from "@services/questiontree.service"
 import { Loader } from "@components/Loader"
 import { UserService } from "@services/user.service"
-import { Session } from "next-auth/core/types"
+import { Session } from "next-auth"
 
 interface ResultInterface {
   resultId: string
@@ -39,6 +39,8 @@ export const ResultDiv = ({
   useEffect(() => {
     updateUserProgress()
   }, [result, session])
+
+  if (!session?.user) return <p>User missing</p>
 
   const body =
     !result || isErrorResult ? (

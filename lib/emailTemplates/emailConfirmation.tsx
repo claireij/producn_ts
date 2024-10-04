@@ -18,7 +18,7 @@ export default function WelcomeEmail({
   firstname,
   emailConfirmationString,
 }: WelcomeEmailInterface) {
-  const url = `http://localhost:3000/email-confirmation?emailConfirmationString=${
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/email-confirmation?emailConfirmationString=${
     emailConfirmationString
   }`
 
@@ -54,7 +54,7 @@ export default function WelcomeEmail({
 
             <Section style={footer} className="text-center flex justify-center">
               <Link
-                href="https://localhost:3000/questiontree"
+                href={`${process.env.BASE_URL}/questiontree`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -62,18 +62,14 @@ export default function WelcomeEmail({
               </Link>
               &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
               <Link
-                href="https://localhost:3000/private-policy"
+                href={`${process.env.BASE_URL}/private-policy`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Policies
               </Link>
               &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-              <Link href="http://localhost:3000/help" target="_blank">
-                About us
-              </Link>
-              &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-              <Link href="http://localhost:3000/blog" target="_blank">
+              <Link href={`${process.env.BASE_URL}/blog`} target="_blank">
                 Producn Blog
               </Link>
               <Text>

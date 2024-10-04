@@ -22,8 +22,10 @@ class QuestionTreeLinkedList<T> {
       this.head = newTail
     } else {
       let tail = this.head
-      while (tail.getNextNode() !== null) {
-        tail = tail.getNextNode()
+      let nextNode = tail.getNextNode()
+      while (nextNode !== null) {
+        tail = nextNode
+        nextNode = tail.getNextNode()
       }
       tail.setNextNode(newTail)
     }
