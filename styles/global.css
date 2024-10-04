@@ -1,0 +1,35 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #262322;
+    /* background-color: #f5f5f5; */
+    font-size: 16px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    margin-bottom: 10px;
+  }
+  

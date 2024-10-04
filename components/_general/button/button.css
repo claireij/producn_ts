@@ -1,0 +1,43 @@
+.button {
+    padding: 5px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.default {
+    border: 1px solid black;
+    color: black;
+}
+
+.default.danger {
+    border: 1px solid #f87575;
+    color: #f87575;
+}
+
+.default.danger:hover {
+    border: 1px solid #9a4646;
+    color: #9a4646;
+}
+
+.default:hover {
+    border: 1px solid #457b9d;
+    color: #457b9d;
+}
+
+.primary {
+    background-color: #457b9d;
+    color: white;
+}
+
+.primary.danger {
+    background-color: #f87575;
+}
+
+.primary.danger:hover {
+    background-color: #9a4646;
+}
+
+.primary:hover {
+    background-color: #5c8fb1;
+}
+

@@ -1,0 +1,15 @@
+.divider::before {
+    position: relative;
+    width: 5%;
+    content: '';
+    border-block-start: 1px solid grey;
+    transform: translateY(50%);
+}
+
+.divider::after {
+    position: relative;
+    width: 95%;
+    content: '';
+    border-block-start: 1px solid grey;
+    transform: translateY(50%);
+}

@@ -1,0 +1,22 @@
+@media screen and (min-width: 1025px) {
+  .body__content {
+    margin: calc(76px + 15px) 115px 25px 115px;
+    padding: 50px 70px;
+  }
+
+  #header__registration {
+    margin-right: 15px;
+  }
+
+  .card {
+    width: calc(33% - 10px);
+  }
+
+  .card:nth-child(3n) {
+    margin-right: 0 !important;
+  }
+
+  .card:nth-child(2n) {
+    margin-right: 15px;
+  }
+}
