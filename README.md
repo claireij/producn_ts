@@ -21,8 +21,10 @@
 - **Question Tree**: An interactive tool that helps musicians identify and solve specific issues by answering a series of guided questions.
 - **Blog**: A collection of articles covering a wide range of topics, tips, and advice for musicians.
 - **FAQs Page**: A dedicated page answering common questions to help users quickly find the information they need.
-- **User-Friendly Interface**: Built with Next.js to ensure a seamless and responsive user experience.
+- **Login, Registration and Profil**: Authentication setup with protected pages available only through the login
+- **Payment with Paypal**
 - **Data Management**: Utilizes Sequelize and MySQL for efficient data storage and retrieval.
+- **Reusable Components**: Highly reusable components (such as Form, Menu) to be found in `components/_general` to unify the look, ensure clean code and simplify the work of developers.
 
 ## Technologies Used
 
@@ -35,13 +37,16 @@
   - [MySQL](https://www.mysql.com/)
 - **Styling**:
   - [Tailwind CSS](https://tailwindcss.com/)
-  - Some vanilla CSS to showcase skills
+  - Some vanilla CSS (only added to showcase skills)
 - **State Management**: [Tanstack Query](https://tanstack.com/)
-- **Testing**: Will be added soon
+- **Testing**: 
+    - [Jest](https://jestjs.io/) --> Will be added soon
 - **Others**: 
     - [Axios](https://axios-http.com/) (for API calls)
     - [NextAuth](https://next-auth.js.org/) (for authentication)
     - [@paypal/react-paypal-js](https://www.npmjs.com/package/@paypal/react-paypal-js) (for payment handling)
+    - [ESLint](https://eslint.org/)
+    - [i18next](https://www.i18next.com/) (for translations) --> will be added soon
 
 ## Deployement
 
