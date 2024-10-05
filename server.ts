@@ -1,21 +1,21 @@
-const express = require('express');
-const next = require('next');
+const express = require("express")
+const next = require("next")
 
-const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({ dev });
-const handle = nextApp.getRequestHandler();
+const dev: boolean = process.env.NODE_ENV !== "production"
+const nextApp = next({ dev })
+const handle = nextApp.getRequestHandler()
 
-const port = 3454;
+const port: number = 3454
 
 nextApp.prepare().then(() => {
-  const app = express();
+  const app = express()
 
-  app.get('*', (req, res) => {
-    return handle(req, res);
-  });
+  app.get("*", (req: any, res: any) => {
+    return handle(req, res)
+  })
 
-  app.listen(port, err => {
-    if (err) throw err;
-    console.log(`> Ready on localhost:${port}`);
-  });
-});
+  app.listen(port, (err?: Error) => {
+    if (err) throw err
+    console.log(`> Ready on localhost:${port}`)
+  })
+})
