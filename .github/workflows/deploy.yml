@@ -1,0 +1,44 @@
+name: Deploy Next.js to cPanel
+
+on:
+  push:
+    branches:
+      - main # Run the workflow on pushes to the main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20 # Specify your Node.js version
+
+    # Step 3: Install dependencies and build the Next.js app
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the Next.js app
+      run: npm run build
+
+    # Step 4: Upload build files to cPanel via SFTP/FTP
+    - name: Deploy to cPanel
+      uses: SamKirkland/FTP-Deploy-Action@4.5.1
+      with:
+        server: ${{ secrets.CPANEL_HOST }}
+        username: ${{ secrets.CPANEL_USERNAME }}
+        password: ${{ secrets.CPANEL_PASSWORD }}
+        port: ${{ secrets.CPANEL_PORT }} # SFTP is usually 22, FTP is 21
+        local-dir: ".next" # The directory where Next.js builds the output
+        server-dir: ${{ secrets.CPANEL_DEPLOY_PATH }} # Path to deploy on cPanel
+
+    # Step 5: Ensure correct file permissions
+    - name: Set correct file permissions
+      run: |
+        sshpass -p "${{ secrets.CPANEL_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} "chmod -R 755 ${{ secrets.CPANEL_DEPLOY_PATH }}"
