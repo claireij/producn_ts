@@ -35,7 +35,7 @@ jobs:
         username: ${{ secrets.CPANEL_USERNAME }}
         password: ${{ secrets.CPANEL_PASSWORD }}
         port: ${{ secrets.CPANEL_PORT }} # SFTP is usually 22, FTP is 21
-        local-dir: ".next" # The directory where Next.js builds the output
+        local-dir: ".next/" # The directory where Next.js builds the output
         server-dir: ${{ secrets.CPANEL_DEPLOY_PATH }} # Path to deploy on cPanel
 
     # Step 5: Ensure correct file permissions
