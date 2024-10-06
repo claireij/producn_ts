@@ -10,10 +10,12 @@ const port = 3454
 nextApp.prepare().then(() => {
   const app = express()
 
+  //@ts-ignore
   app.get("*", (req, res) => {
     return handle(req, res)
   })
 
+  //@ts-ignore
   app.listen(port, (err) => {
     if (err) throw err
     console.log(`> Ready on localhost:${port}`)
