@@ -50,10 +50,8 @@ export const PaypalPayment = ({
 
     try {
       const subscriptionId = await actions.subscription.create({
-        plan_id:
-          process.env.NODE_ENV === "development"
-            ? "P-6Y377168TB470992GMQ4V4SI"
-            : paypalSubscriptionPlan,
+        // as of now, in production we also use the sandbox
+        plan_id: "P-6Y377168TB470992GMQ4V4SI"
       })
 
       return subscriptionId

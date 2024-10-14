@@ -52,10 +52,8 @@ export const PaypalService = {
   },
   getPayPalAccessToken: async () => {
     try {
-      const paypalUrl =
-        process.env.NODE_ENV === "production"
-          ? process.env.PAYPAL_HOST_LIVE
-          : process.env.PAYPAL_HOST_SANDBOX
+      // as of now, we only use the sandbox
+      const paypalUrl = process.env.PAYPAL_HOST_SANDBOX
       const client_id = process.env.PAYPAL_CLIENT_ID || ""
       const client_secret = process.env.PAYPAL_CLIENT_SECRET || ""
 
