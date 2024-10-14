@@ -93,29 +93,29 @@ export const PaypalPayment = ({
     <div className={isVisible ? "" : "hidden"}>
       <main>
         {!paymentComplete ? (
-          <>
-            <h2 className="registration__h2">Choose your payment method</h2>
-            {/* <p></p> */}
-            <PayPalScriptProvider
-              options={{
-                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
-                vault: true,
-                intent: "subscription",
+        <>
+          <h2 className="registration__h2">Choose your payment method</h2>
+          <PayPalScriptProvider
+            key={isVisible ? "visible" : "hidden"}
+            options={{
+              clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
+              vault: true,
+              intent: "subscription",
+            }}
+          >
+            <PayPalButtons
+              style={{
+                color: "gold",
+                shape: "rect",
+                label: "pay",
+                height: 50,
               }}
-            >
-              <PayPalButtons
-                style={{
-                  color: "gold",
-                  shape: "rect",
-                  label: "pay",
-                  height: 50,
-                }}
-                createSubscription={createSubscription}
-                onApprove={onApprove}
-              />
-            </PayPalScriptProvider>
-          </>
-        ) : (
+              createSubscription={createSubscription}
+              onApprove={onApprove}
+            />
+          </PayPalScriptProvider>
+        </>
+         ) : (
           <p>{successMessage}</p>
         )}
       </main>
