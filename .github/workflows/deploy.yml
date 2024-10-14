@@ -9,6 +9,14 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    env:
+      NEXT_PUBLIC_PAYPAL_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}
+      NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_BASIC_MONTHLY: ${{ secrets.NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_BASIC_MONTHLY }}
+      NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_BASIC_YEARLY: ${{ secrets.NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_BASIC_YEARLY }}
+      NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_PRO_MONTHLY: ${{ secrets.NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_PRO_MONTHLY }}
+      NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_PRO_YEARLY: ${{ secrets.NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_PRO_YEARLY }}
+
     steps:
     # Step 1: Checkout the repository
     - name: Checkout repository
@@ -33,8 +41,4 @@ jobs:
       with:
         server: ${{ secrets.CPANEL_HOST }}
         username: ${{ secrets.CPANEL_USERNAME }}
-        password: ${{ secrets.CPANEL_PASSWORD }}
-        port: ${{ secrets.CPANEL_PORT }} # SFTP is usually 22, FTP is 21
-        local-dir: "./" # The directory where Next.js builds the output
-        server-dir: ${{ secrets.CPANEL_DEPLOY_PATH }} # Path to deploy on cPanel
-        protocol: ftps
+       
