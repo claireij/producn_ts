@@ -11,8 +11,8 @@ nextApp.prepare().then(() => {
   const app = express()
 
   //@ts-ignore
-  app.get("*", (req, res) => {
-    return handle(req, res)
+  app.all("*", (req, res) => {
+    return handle(req, res);
   })
 
   //@ts-ignore
