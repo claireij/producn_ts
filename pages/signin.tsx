@@ -55,7 +55,7 @@ export default function SignIn({ csrfToken }: { csrfToken?: string }) {
 
         {error && (
           <Alert
-            title="Error login in"
+            title="Error while logging in"
             message={error}
             type={StatusEnum.ERROR}
             showIcon
