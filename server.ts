@@ -1,10 +1,8 @@
-import { NextFunction, Response, Request } from "express";
+import express, { Request, Response, NextFunction } from "express";
+import fs from "fs";
+import util from "util";
+import next from "next";
 
-const express = require("express")
-const next = require("next")
-
-const fs = require('fs');
-const util = require('util');
 const log_file = fs.createWriteStream(__dirname + '/debug.log', { flags: 'a' });
 const log_stdout = process.stdout;
 
