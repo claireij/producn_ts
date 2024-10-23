@@ -3,17 +3,19 @@ const next = require("next")
 
 const fs = require('fs');
 const util = require('util');
-const log_file = fs.createWriteStream(__dirname + '/debug.log', {flags: 'w'});
+const log_file = fs.createWriteStream(__dirname + '/debug.log', { flags: 'a' });
 const log_stdout = process.stdout;
 
-console.log = (d, e, f, g) => {
-  log_file.write(util.format('LOG: ', d?d:'', e?e:'', f?f:'', g?g:'') + '\n');
-  log_stdout.write(util.format('LOG: ', d?d:'', e?e:'', f?f:'', g?g:'') + '\n');
+console.log = function (...args) {
+  const logMessage = util.format(...args);
+  log_file.write('LOG: ' + logMessage + '\n');
+  log_stdout.write('LOG: ' + logMessage + '\n');
 }
 
-console.error = (d, e, f, g) => {
-  log_file.write(util.format('ERROR: ', d?d:'', e?e:'', f?f:'', g?g:'') + '\n');
-  log_stdout.write(util.format('ERROR: ', d?d:'', e?e:'', f?f:'', g?g:'') + '\n');
+console.error = function (...args) {
+  const errorMessage = util.format(...args);
+  log_file.write('ERROR: ' + errorMessage + '\n');
+  log_stdout.write('ERROR: ' + errorMessage + '\n');
 }
 
 const dev = process.env.NODE_ENV !== "production"
