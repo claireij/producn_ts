@@ -1,3 +1,5 @@
+import { NextFunction, Response, Request } from "express";
+
 const express = require("express")
 const next = require("next")
 
@@ -26,6 +28,19 @@ const port = 3454
 
 nextApp.prepare().then(() => {
   const app = express()
+
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    const startTime = Date.now();
+
+    console.log(`[REQUEST] ${req.method} ${req.url} - Body: ${JSON.stringify(req.body || {})}`);
+
+    res.on('finish', () => {
+      const duration = Date.now() - startTime;
+      console.log(`[RESPONSE] ${req.method} ${req.url} - Status: ${res.statusCode} - Duration: ${duration}ms`);
+    });
+
+    next();
+  });
 
   //@ts-ignore
   app.all("*", (req, res) => {
