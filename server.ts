@@ -5,17 +5,18 @@ import next from "next";
 
 const log_file = fs.createWriteStream(__dirname + '/debug.log', { flags: 'a' });
 const log_stdout = process.stdout;
+const date = new Date()
 
 console.log = function (...args) {
   const logMessage = util.format(...args);
-  log_file.write('LOG: ' + logMessage + '\n');
-  log_stdout.write('LOG: ' + logMessage + '\n');
+  log_file.write('LOG: ' + date + logMessage + '\n');
+  log_stdout.write('LOG: ' + date +  logMessage + '\n');
 }
 
 console.error = function (...args) {
   const errorMessage = util.format(...args);
-  log_file.write('ERROR: ' + errorMessage + '\n');
-  log_stdout.write('ERROR: ' + errorMessage + '\n');
+  log_file.write('ERROR: ' + date + errorMessage + '\n');
+  log_stdout.write('ERROR: ' + date + errorMessage + '\n');
 }
 
 const dev = process.env.NODE_ENV !== "production"
@@ -30,11 +31,11 @@ nextApp.prepare().then(() => {
   app.use((req: Request, res: Response, next: NextFunction) => {
     const startTime = Date.now();
 
-    console.log(`[REQUEST] ${req.method} ${req.url} - Body: ${JSON.stringify(req.body || {})}`);
+    console.log(`[REQUEST] ${date} ${req.method} ${req.url} - Body: ${JSON.stringify(req.body || {})}`);
 
     res.on('finish', () => {
       const duration = Date.now() - startTime;
-      console.log(`[RESPONSE] ${req.method} ${req.url} - Status: ${res.statusCode} - Duration: ${duration}ms`);
+      console.log(`[RESPONSE] ${date} ${req.method} ${req.url} - Status: ${res.statusCode} - Duration: ${duration}ms`);
     });
 
     next();
