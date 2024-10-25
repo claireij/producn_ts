@@ -1,7 +1,8 @@
-import express, { Request, Response, NextFunction } from "express";
-import fs from "fs";
-import util from "util";
-import next from "next";
+const express = require("express")
+const next = require("next")
+
+const fs = require('fs');
+const util = require('util');
 
 const log_file = fs.createWriteStream(__dirname + '/debug.log', { flags: 'a' });
 const log_stdout = process.stdout;
@@ -28,7 +29,7 @@ const port = 3454
 nextApp.prepare().then(() => {
   const app = express()
 
-  app.use((req: Request, res: Response, next: NextFunction) => {
+  app.use((req, res, next) => {
     const startTime = Date.now();
 
     console.log(`[REQUEST] ${date} ${req.method} ${req.url} - Body: ${JSON.stringify(req.body || {})}`);
@@ -41,12 +42,10 @@ nextApp.prepare().then(() => {
     next();
   });
 
-  //@ts-ignore
   app.all("*", (req, res) => {
     return handle(req, res);
   })
 
-  //@ts-ignore
   app.listen(port, (err) => {
     if (err) throw err
     console.log(`> Ready on localhost:${port}`)

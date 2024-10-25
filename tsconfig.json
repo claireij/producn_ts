@@ -1,10 +1,4 @@
 {
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
   "compilerOptions": {
     "jsx": "preserve",
     /* Visit https://aka.ms/tsconfig to read more about this file */
@@ -128,7 +122,7 @@
     "types/next-auth.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "server.js"  ],
   "exclude": [
     "node_modules"
   ]
