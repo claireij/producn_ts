@@ -13,13 +13,18 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials) {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/check-user-credentials`,
+          `${process.env.NEXTAUTH_URL}/api/auth/check-user-credentials`,
           {
             method: "POST",
             body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" },
           },
         )
+        if (!res.ok) {
+          const error = await res.json();
+          throw new Error(error.message || 'Authentication failed');
+      }
+
         const user = await res.json()
         if (res.ok && user) {
           return user
@@ -28,7 +33,7 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
-  secret: process.env.JWT_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
