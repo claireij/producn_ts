@@ -8,6 +8,7 @@ interface FormInterface {
   children: React.ReactNode
   onFinish?: (values: FormValues) => void
   initialValues?: Record<string, FormValue>
+  centered?: boolean
 }
 
 export const Form = ({
@@ -15,6 +16,7 @@ export const Form = ({
   children,
   onFinish,
   initialValues,
+  centered = true
 }: FormInterface) => {
   useEffect(() => {
     if (initialValues) form.setFormValues(initialValues)
@@ -27,6 +29,7 @@ export const Form = ({
           e.preventDefault()
           form.handleSubmit(onFinish)()
         }}
+        className={centered ? "flex flex-col items-center w-full" : ""}
       >
         {children}
       </form>

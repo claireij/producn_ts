@@ -10,18 +10,22 @@ import { Alert } from "@components/_general/Alert"
 import { StatusEnum } from "@models/general"
 import { CtxOrReq } from "next-auth/client/_utils"
 import { FormValues } from "@components/_general/form/form.types"
+import { Loader } from "@components/Loader"
 
 export default function SignIn({ csrfToken }: { csrfToken?: string }) {
   const router = useRouter()
   const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm()
 
   const handleSubmit = async (values: FormValues) => {
+    setIsLoading(true)
     const result = await signIn("credentials", {
       redirect: false,
       ...values,
     })
+    setIsLoading(false)
 
     if (result?.error) {
       setError(result.error)
@@ -31,47 +35,58 @@ export default function SignIn({ csrfToken }: { csrfToken?: string }) {
   }
 
   return (
-    <Layout title="Signin to Producn">
-      <Form
-        form={form}
-        onFinish={handleSubmit}
-        initialValues={{
-          ...(csrfToken && { csrfToken }),
-          email: "",
-          password: "",
-        }}
-      >
-        <Form.Item name="csrfToken">
-          <Input type="hidden" />
-        </Form.Item>
+    <Layout title="Login to Your Account">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Form
+          form={form}
+          onFinish={handleSubmit}
+          initialValues={{
+            ...(csrfToken && { csrfToken }),
+            email: "",
+            password: "",
+          }}
+        >
+          <Form.Item name="csrfToken">
+            <Input type="hidden" />
+          </Form.Item>
 
-        <Form.Item name="email" label="Email">
-          <Input />
-        </Form.Item>
+          <Form.Item name="email" label="Email">
+            <Input />
+          </Form.Item>
 
-        <Form.Item name="password" label="Password">
-          <Input.Password />
-        </Form.Item>
+          <Form.Item name="password" label="Password">
+            <Input.Password />
+          </Form.Item>
 
-        {error && (
-          <Alert
-            title="Error while logging in"
-            message={error}
-            type={StatusEnum.ERROR}
-            showIcon
-          />
-        )}
+          <div className="flex flex-col items-center gap-3 mt-8">
+            {error && (
+              <Alert
+                title="Error while logging in"
+                message={error}
+                type={StatusEnum.ERROR}
+                showIcon
+              />
+            )}
 
-        <div className="flex flex-col gap-2 mt-5">
-          <Button type="primary" htmlType="submit">
-            Sign in
-          </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              classNames="w-full h-[40px]"
+            >
+              Sign in
+            </Button>
 
-          <Button type="link" href="/registration">
-            Don't have an account? Register now.
-          </Button>
-        </div>
-      </Form>
+            <span>
+              Don't have an account?{" "}
+              <Button type="link" href="/registration">
+                Register now.
+              </Button>
+            </span>
+          </div>
+        </Form>
+      )}
     </Layout>
   )
 }

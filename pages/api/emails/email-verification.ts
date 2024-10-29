@@ -14,20 +14,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     secure: true,
   })
 
-  const message = `Dear ${req.body.firstname}, please confirm your email by clicking on the link below. 
-    `
+  const message = `Dear ${req.body.firstname}, please confirm your email by clicking on the link below.`
+
+  const html = await render(
+    emailConfirmation({
+      firstname: `${req.body.firstname}`,
+      emailConfirmationString: `${req.body.emailConfirmationString}`,
+    }),
+  )
 
   const mailData = {
     from: "no-reply@producn.com",
     to: "ruppelclaire@yahoo.de",
     subject: "Confirm your email.",
     text: message,
-    html: `${render(
-      emailConfirmation({
-        firstname: `${req.body.firstname}`,
-        emailConfirmationString: `${req.body.emailConfirmationString}`,
-      }),
-    )}`,
+    html: html,
   }
 
   transporter.sendMail(mailData, (err, info) => {

@@ -46,14 +46,9 @@ export const RegistrationStepOne = ({
   }
 
   return (
-    <div className={isVisible ? "" : "hidden"}>
-      <Button type="link" href="/signin">
-        Click here to login.
-      </Button>
-
-      <Form.Item name="gender" rules={[{ required: true }]}>
+    <div className={`flex flex-col items-center ${isVisible ? "" : "hidden"}`}>
+      <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
         <Select
-          label="Gender"
           options={[
             { value: GenderEnum.FEMALE, label: "Mrs." },
             { value: GenderEnum.MALE, label: "Mr." },
@@ -106,7 +101,7 @@ export const RegistrationStepOne = ({
         <Input.Password />
       </Form.Item>
 
-      <p className="mb-3">
+      <p className="mb-5 mt-2">
         By registering, you agree to Producn's{" "}
         <Button type="link" href="/imprints">
           Terms of Service
@@ -125,26 +120,28 @@ export const RegistrationStepOne = ({
         <Checkbox label="Yes, I would like to subscribe to the Producn newsletter." />
       </Form.Item>
 
-      {userAlreadyExists && (
-        <Alert
-          showIcon
-          type={StatusEnum.ERROR}
-          title="This user already exists"
-          message={
-            <p>
-              Please click{" "}
-              <Button type="link" href="/signin">
-                here
-              </Button>{" "}
-              to sign in.
-            </p>
-          }
-        ></Alert>
-      )}
+      <div className="mt-5 w-full flex flex-col items-center">
+        {userAlreadyExists && (
+          <Alert
+            showIcon
+            type={StatusEnum.ERROR}
+            title="This user already exists"
+            message={
+              <p>
+                Please click{" "}
+                <Button type="link" href="/signin">
+                  here
+                </Button>{" "}
+                to sign in.
+              </p>
+            }
+          ></Alert>
+        )}
 
-      <Button type="primary" onClick={handleNextClick}>
-        Next: Choose your subscription
-      </Button>
+        <Button type="primary" onClick={handleNextClick} classNames="mt-3">
+          Next: Choose your subscription
+        </Button>
+      </div>
     </div>
   )
 }

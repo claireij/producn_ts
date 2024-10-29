@@ -7,7 +7,7 @@ interface AccessDeniedInterface {
 
 export const AccessDenied = ({ loggedIn = false }: AccessDeniedInterface) => {
   return (
-    <>
+    <div className="flex flex-col items-center">
       <h1>Access Denied</h1>
 
       {loggedIn ? (
@@ -25,6 +25,6 @@ export const AccessDenied = ({ loggedIn = false }: AccessDeniedInterface) => {
           </Button>
         </>
       )}
-    </>
+    </div>
   )
 }

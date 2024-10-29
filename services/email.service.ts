@@ -2,7 +2,7 @@ import { handleAxiosError } from "@utils/general.utils"
 import axios from "axios"
 
 export const EmailService = {
-  sendEmailVerificationEmail: ({
+  sendEmailVerificationEmail: async ({
     userData,
     emailConfirmationString,
   }: {
@@ -10,17 +10,14 @@ export const EmailService = {
     emailConfirmationString: string
   }) => {
     try {
-      axios
+      const response = await axios
         .post("/api/emails/email-verification", {
           firstname: userData.firstname,
           email: userData.email,
           emailConfirmationString: emailConfirmationString,
         })
-        .then((response) => {
-          if (response.status == 200) {
-            alert("Email sent!")
-          }
-        })
+        
+        return response
     } catch (error) {
       handleAxiosError(error)
       throw new Error("Failed to send verification email.")
@@ -28,7 +25,7 @@ export const EmailService = {
   },
   sendDeletionConfirmationEmail: async (email: string) => {
     try {
-      const response = axios.post("/api/users/delete-confirmation-email", {
+      const response = await axios.post("/api/users/delete-confirmation-email", {
         params: { email },
       })
       return response

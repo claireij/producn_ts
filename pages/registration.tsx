@@ -16,10 +16,10 @@ import { useRouter } from "next/router"
 import { PaypalService } from "@services/paypal.service"
 import { StatusEnum } from "@models/general"
 import { showNotification } from "@services/notification.service"
+import { SubscriptionEnum } from "@models/subscription"
 
 function Registration() {
   const router = useRouter()
-  const { preSelectedSubscription } = useParams()
 
   const registrationForm = useForm()
 
@@ -28,7 +28,7 @@ function Registration() {
 
   const initialUserValues = {
     gender: GenderEnum.FEMALE,
-    subscription: preSelectedSubscription ? preSelectedSubscription : 1,
+    subscription_id: SubscriptionEnum.PRO_YEARLY,
   }
 
   const { status } = useSession()
@@ -93,7 +93,7 @@ function Registration() {
       title={
         completedRegistrationStep == 3
           ? "Thank you for your registration."
-          : "Register and choose your subscription!"
+          : "Registration"
       }
       isLoading={status === "loading"}
     >

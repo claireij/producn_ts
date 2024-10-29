@@ -46,6 +46,7 @@ export default function Faqs() {
       title="FAQs"
       isLoading={isLoadingFaqs || isLoadingCategories}
       hasError={isErrorFaqs || isErrorCategories}
+      centered={false}
     >
       <Search onSearch={handleSearchChange} />
 

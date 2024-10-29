@@ -88,11 +88,11 @@ export const PaypalPayment = ({
     showNotification("Paypal error", "Unable to connect to paypal")
 
   return (
-    <div className={isVisible ? "" : "hidden"}>
+    <div className={`flex flex-col items-center ${isVisible ? "" : "hidden"}`}>
       <main>
         {!paymentComplete ? (
         <>
-          <h2 className="registration__h2">Choose your payment method</h2>
+          <h2 className="mb-5">Choose your payment method</h2>
           <PayPalScriptProvider
             key={isVisible ? "visible" : "hidden"}
             options={{

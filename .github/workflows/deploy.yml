@@ -3,7 +3,7 @@ name: Deploy Next.js to cPanel
 on:
   push:
     branches:
-      - main # Run the workflow on pushes to the main branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -16,36 +16,30 @@ jobs:
       NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_BASIC_YEARLY: ${{ secrets.NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_BASIC_YEARLY }}
       NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_PRO_MONTHLY: ${{ secrets.NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_PRO_MONTHLY }}
       NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_PRO_YEARLY: ${{ secrets.NEXT_PUBLIC_PAYPAL_SUBSCRIPTION_PLAN_PRO_YEARLY }}
-      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
     steps:
-    # Step 1: Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # Step 2: Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 20.17.0 # Specify your Node.js version
+        node-version: 20.17.0
 
-    # Step 3: Install dependencies and build the Next.js app
     - name: Install dependencies
       run: npm install
 
     - name: Build the Next.js app
       run: npm run build
 
-    # Step 4: Upload build files to cPanel via SFTP/FTP
     - name: Deploy to cPanel
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ${{ secrets.CPANEL_HOST }}
         username: ${{ secrets.CPANEL_USERNAME }}
         password: ${{ secrets.CPANEL_PASSWORD }}
-        port: ${{ secrets.CPANEL_PORT }} # SFTP is usually 22, FTP is 21
-        local-dir: "./" # The directory where Next.js builds the output
-        server-dir: ${{ secrets.CPANEL_DEPLOY_PATH }} # Path to deploy on cPanel
+        port: ${{ secrets.CPANEL_PORT }}
+        local-dir: "./"
+        server-dir: ${{ secrets.CPANEL_DEPLOY_PATH }}
         protocol: ftps
        

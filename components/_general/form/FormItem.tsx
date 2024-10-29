@@ -31,6 +31,8 @@ export const FormItem = ({
 
   const value = form.getFieldValue({ name })
 
+  const isRequired = rules?.some(rule => rule.required === true);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     form.setFieldValue({
       name,
@@ -54,7 +56,7 @@ export const FormItem = ({
 
   return (
     <div className="form-item flex flex-col gap-1  mb-3">
-      <label>{label}</label>
+      <label>{label} {isRequired && "*"}</label>
       {item}
       {error && <div className="form-error text-red">{error}</div>}
     </div>

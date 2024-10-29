@@ -12,6 +12,7 @@ interface ButtonInterface {
   rel?: string
   htmlType?: "button" | "submit"
   isDisabled?: boolean
+  classNames?: string
 }
 
 export const Button = ({
@@ -25,10 +26,11 @@ export const Button = ({
   rel,
   htmlType = "button",
   isDisabled = false,
+  classNames = ""
 }: ButtonInterface) => {
   const iconSized = <div className="w-5">{icon}</div>
 
-  const buttonClassNames = `cursor-pointer h-fit w-fit button ${type} ${danger && "danger"} ${isDisabled && "pointer-events-none"}`
+  const buttonClassNames = `rounded-lg cursor-pointer h-fit w-fit button ${type} ${danger && "danger"} ${isDisabled && "pointer-events-none"} ${classNames}`
 
   if (href)
     return (
@@ -38,7 +40,7 @@ export const Button = ({
         rel={rel}
         className={
           type !== "link"
-            ? `button h-fit w-fit ${type}`
+            ? buttonClassNames
             : "underline text-blue inline-block visited:text-blue-900"
         }
       >

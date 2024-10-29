@@ -74,7 +74,6 @@ export default function WelcomeEmail({
               </Link>
               <Text>
                 ©2023 Producn, make music easy. <br />
-                Marchgrabenplatz 3, 80805 Munich, Germany <br />
                 <br />
                 All rights reserved.
               </Text>

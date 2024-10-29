@@ -5,6 +5,20 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./lib/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    "bg-blue",
+    "bg-red",
+    "bg-green",
+    "bg-orange",
+    "border-green",
+    "border-orange",
+    "border-red",
+    "border-blue",
+    "text-blue",
+    "text-red",
+    "text-green",
+    "text-orange",
+  ],
   theme: {
     colors: {
       blue: {

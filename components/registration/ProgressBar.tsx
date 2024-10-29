@@ -28,7 +28,7 @@ export const ProgressBar = ({
   const classNames = "flex flex-col items-center mb-5"
   const activeClassName = " text-blue"
   return (
-    <div className="mt-10 mb-3">
+    <div className="mt-10 mb-3 w-full">
       <div className="border -mb-2"></div>
       <div className="flex justify-between">
         {steps.map((step, index) => {

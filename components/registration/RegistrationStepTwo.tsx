@@ -13,10 +13,11 @@ export default function RegistrationStepTwo({
   setCompletedRegistrationStep,
 }: RegistrationStepTwoInterface) {
   return (
-    <div className={isVisible ? "" : "hidden"}>
-      <h2 className="registration__h2">Choose your subscription</h2>
+    <div className={`flex flex-col items-center ${isVisible ? "" : "hidden"}`}>
+      <h2 className="mb-4">Choose your subscription</h2>
       <SubscriptionsOverview />
       <Button
+        classNames="mt-5"
         type="primary"
         onClick={() => {
           setRegistrationStep(3)

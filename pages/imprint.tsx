@@ -2,13 +2,10 @@ import { Layout } from "@components/Layout"
 
 export default function AboutUs() {
   return (
-    <Layout title="About Us">
+    <Layout title="Imprint">
       <section>
-        <h1 className="section-title">Imprint.</h1>
         <p>Producn</p>
         <p>Claire Ruppel</p>
-        <p>Marchgrabenplatz 3</p>
-        <p>80805 Munich</p>
         <p>Email: info[at]producn.com</p>
 
         <p>Picture credits: </p>

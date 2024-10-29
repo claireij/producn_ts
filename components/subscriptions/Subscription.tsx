@@ -11,7 +11,6 @@ export enum SubscriptionLevelEnum {
 
 interface SubscriptionInterface {
   subscriptionPrices: Array<SubscriptionPrice>
-  preSelectedSubscription: string
   subscription: SubscriptionLevelEnum
 }
 
@@ -66,6 +65,7 @@ export const Subscription = ({
                 ? SubscriptionEnum.PRO_YEARLY
                 : SubscriptionEnum.BASIC_YEARLY
             }
+            isDefault={subscription === SubscriptionLevelEnum.PRO}
           >
             {yearlyPrice}$ yearly (save {saving}$)
           </Radio>

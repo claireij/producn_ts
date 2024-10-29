@@ -143,6 +143,7 @@ export default function Profil() {
           form={form}
           onFinish={handleUserUpdate}
           initialValues={userWithoutPassword}
+          centered={false}
         >
           <EditField
             title="Name"

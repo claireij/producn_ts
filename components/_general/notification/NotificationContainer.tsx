@@ -16,6 +16,7 @@ export const NotificationContainer: React.FC<
           id={notification.id}
           message={notification.message}
           title={notification.title}
+          type={notification.type}
           onClose={onRemove}
         />
       ))}

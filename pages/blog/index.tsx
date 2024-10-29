@@ -62,7 +62,7 @@ function Blog() {
   }
 
   return (
-    <Layout title="Blog">
+    <Layout title="Blog" centered={false}>
       <Search onSearch={handleSearch} />
 
       <div className="flex gap-2 mb-10 w-[500px] flex-wrap">

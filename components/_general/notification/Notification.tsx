@@ -24,7 +24,7 @@ export const Notification = ({
 
   return (
     <div
-      className="bg-white shadow p-5 rounded-lg flex gap-3 justify-between"
+      className="bg-white shadow p-5 rounded-lg flex gap-3 justify-between items-top"
       key={id}
     >
       {getStatusIcon(type)}
@@ -35,6 +35,7 @@ export const Notification = ({
         {message}
       </div>
       <AiOutlineCloseCircle
+        size={35}
         onClick={() => {
           setShowNotification(false)
           if (onClose) onClose(id)

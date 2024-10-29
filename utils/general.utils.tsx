@@ -65,13 +65,13 @@ export const getStatusIcon = (type: StatusEnum) => {
 
   switch (type) {
     case StatusEnum.SUCCESS:
-      return <FaRegCheckCircle className={iconClassName + " text-green"} />
+      return <FaRegCheckCircle size={40} className={iconClassName + " text-green"} />
     case StatusEnum.WARNING:
-      return <MdWarningAmber className={iconClassName + " text-orange"} />
+      return <MdWarningAmber size={40} className={iconClassName + " text-orange"} />
     case StatusEnum.ERROR:
-      return <MdErrorOutline className={iconClassName + " text-red"} />
+      return <MdErrorOutline size={40} className={iconClassName + " text-red"} />
     default:
-      return <AiOutlineInfoCircle className={iconClassName + " text-blue"} />
+      return <AiOutlineInfoCircle size={40} className={iconClassName + " text-blue"} />
       break
   }
 }

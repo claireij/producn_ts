@@ -3,7 +3,7 @@ import { NextApiRequest } from "next"
 import { getToken } from "next-auth/jwt"
 
 export async function middleware(req: NextApiRequest) {
-  const token = await getToken({ req, secret: process.env.JWT_SECRET })
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
 
   if (!token) {
     return NextResponse.redirect(new URL("/signin", req.url))

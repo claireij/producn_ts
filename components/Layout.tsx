@@ -13,6 +13,7 @@ interface LayoutInterface {
   isLoading?: boolean
   shouldHaveAccess?: boolean
   loggedIn?: boolean
+  centered?: boolean
 }
 
 export const Layout = ({
@@ -23,6 +24,7 @@ export const Layout = ({
   hasError,
   shouldHaveAccess = true,
   loggedIn = false,
+  centered = true
 }: LayoutInterface) => {
   let body
   if (isLoading) {
@@ -45,9 +47,9 @@ export const Layout = ({
   return (
     <div className="bg-grey flex flex-col min-h-screen justify-between">
       <Header title={title + " - Producn"} />
-      <div className="mx-10 bg-white rounded p-10 shadow min-h-[600px]">
+      <div className={`mx-10 bg-white rounded p-10 shadow min-h-[600px] ${centered ? "flex flex-col items-center" : ""}`}>
         {showTitle && shouldHaveAccess && <h1>{title}</h1>}
-        {body}
+        <div className="w-full">{body}</div>
       </div>
       <Footer />
     </div>

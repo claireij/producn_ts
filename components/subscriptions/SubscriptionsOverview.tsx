@@ -4,9 +4,10 @@ import { Subscription, SubscriptionLevelEnum } from "./Subscription"
 import { SubscriptionService } from "@services/subscription.service"
 import { useQuery } from "@tanstack/react-query"
 import { Loader } from "@components/Loader"
+import { SubscriptionEnum } from "@models/subscription"
 
 export const SubscriptionsOverview = () => {
-  const preSelectedSubscriptionId = "4"
+  const preSelectedSubscriptionId = SubscriptionEnum.PRO_YEARLY
 
   const [subscription, setSubscription] = useState(SubscriptionLevelEnum.PRO)
 
@@ -42,13 +43,11 @@ export const SubscriptionsOverview = () => {
         <Subscription
           subscription={SubscriptionLevelEnum.BASIC}
           subscriptionPrices={subscriptionPrices}
-          preSelectedSubscription={preSelectedSubscriptionId}
         />
       ) : (
         <Subscription
           subscription={SubscriptionLevelEnum.PRO}
           subscriptionPrices={subscriptionPrices}
-          preSelectedSubscription={preSelectedSubscriptionId}
         />
       )}
     </div>

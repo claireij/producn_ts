@@ -12,13 +12,15 @@ export const Alert = ({ showIcon, title, message, type }: AlertInterface) => {
   const backgroundColor = getStatusColor(type, "bg")
   const borderColor = getStatusColor(type, "border")
 
+  const classNames = `${backgroundColor} bg-opacity-20 p-3 border mb-5 ${borderColor} rounded-lg w-full`
+
   return (
     <div
-      className={`${backgroundColor} bg-opacity-20 p-3 border mb-5 ${borderColor} rounded-lg`}
+      className={classNames}
     >
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center mb-2">
         {showIcon && getStatusIcon(type)}
-        <h3>{title}</h3>
+        <h3 className="mb-0 font-bold">{title}</h3>
       </div>
       <p>{message}</p>
     </div>

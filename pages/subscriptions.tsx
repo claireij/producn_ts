@@ -13,6 +13,7 @@ import { StatusEnum } from "@models/general"
 import { PaypalService } from "@services/paypal.service"
 import { useRouter } from "next/router"
 import { ensureError } from "@utils/general.utils"
+import { SubscriptionEnum } from "@models/subscription"
 
 export default function Subscriptions() {
   const form = useForm()
@@ -53,7 +54,7 @@ export default function Subscriptions() {
       await PaypalService.createSubscription({
         paypalSubscriptionId: paypalSubscriptionId,
         user: newUser,
-        subscription_id: values.subscription_id
+        subscription_id: values.subscription_id,
       })
 
       router.push("/profil")
@@ -73,7 +74,12 @@ export default function Subscriptions() {
       title="Choose your subscription"
       shouldHaveAccess={status === "authenticated"}
     >
-      <Form form={form}>
+      <Form
+        form={form}
+        initialValues={{
+          subscription_id: SubscriptionEnum.PRO_YEARLY,
+        }}
+      >
         {!showPayment ? (
           <>
             <SubscriptionsOverview />

@@ -6,7 +6,7 @@ import { handleSequelizeError } from "@api_utils/general.utils"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const token = await getToken({ req, secret: process.env.JWT_SECRET })
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
 
     if (!token) {
       res.status(401)
