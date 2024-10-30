@@ -1,23 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next"
-import { sequelize } from "../sequelize"
+import { NextApiResponse } from "next"
 import { FaqCategory } from "@api_models/index"
-import { Faq } from "@api_models/index"
 import { ensureError } from "@utils/general.utils"
 import { handleSequelizeError } from "@api_utils/general.utils"
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (res: NextApiResponse) => {
   try {
     const categories = await FaqCategory.findAll({
       attributes: [
         "id",
         "name",
-        [sequelize.fn("COUNT", sequelize.col("faqs.id")), "faq_count"],
-      ],
-      include: [
-        {
-          model: Faq,
-          attributes: [],
-        },
       ],
       group: ["FaqCategory.id"],
     })
