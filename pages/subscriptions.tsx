@@ -14,10 +14,12 @@ import { PaypalService } from "@services/paypal.service"
 import { useRouter } from "next/router"
 import { ensureError } from "@utils/general.utils"
 import { SubscriptionEnum } from "@models/subscription"
+import { useQueryClient } from "@tanstack/react-query"
 
 export default function Subscriptions() {
   const form = useForm()
   const router = useRouter()
+  const queryClient = useQueryClient();
 
   const [showPayment, setShowPayment] = useState(false)
   const { data: session, status } = useSession()
@@ -44,18 +46,18 @@ export default function Subscriptions() {
         )
         return
       }
-      const newUser = await UserService.updateUser({
-        email: email,
-        ...values,
-      })
+      
+      const user = await UserService.getUser(email)
 
       if (!values.subscription_id) throw new Error("Subscription ID is missing")
 
       await PaypalService.createSubscription({
         paypalSubscriptionId: paypalSubscriptionId,
-        user: newUser,
+        user: user,
         subscription_id: values.subscription_id,
       })
+
+      queryClient.invalidateQueries({ queryKey: ["subscription"] });
 
       router.push("/profil")
 

@@ -44,11 +44,18 @@ export default function Profil() {
     enabled: status === "authenticated" && !!session?.user?.email,
   })
 
-  const { data: subscription, isLoading: isLoadingSubscription } = useQuery({
+  const { data: subscription, isLoading: isLoadingSubscription, refetch: refetchSubscription } = useQuery({
     queryKey: ["subscription"],
-    queryFn: () => PaypalService.getSubscription(user.id),
+    queryFn: async () => {
+      try {
+        const result = await PaypalService.getSubscription(user.id)
+        return result
+      } catch (e) {
+        return null
+      }
+    },
     enabled: !!user,
-    retry: false
+    retry: false,
   })
 
   const achievements = [
@@ -72,6 +79,8 @@ export default function Profil() {
         "Subscription paused.",
         "We have successfully paused your subscription",
       )
+
+      refetchSubscription()
     } catch (err) {
       const error = ensureError(err)
       showNotification(
