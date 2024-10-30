@@ -122,7 +122,7 @@
     "types/next-auth.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "server.js"  ],
+, "server.js", "next.config.js"  ],
   "exclude": [
     "node_modules"
   ]
