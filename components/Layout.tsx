@@ -4,9 +4,10 @@ import { Loader } from "@components/Loader"
 import { AccessDenied } from "@components/AccessDenied"
 import { Alert } from "./_general/Alert"
 import { StatusEnum } from "@models/general"
+import { ReactNode } from "react"
 
 interface LayoutInterface {
-  children?: React.ReactNode
+  children?: ReactNode
   title: string
   showTitle?: boolean
   hasError?: boolean
@@ -14,6 +15,7 @@ interface LayoutInterface {
   shouldHaveAccess?: boolean
   loggedIn?: boolean
   centered?: boolean
+  customAccessDeniedPage?: ReactNode
 }
 
 export const Layout = ({
@@ -24,13 +26,14 @@ export const Layout = ({
   hasError,
   shouldHaveAccess = true,
   loggedIn = false,
-  centered = true
+  centered = true,
+  customAccessDeniedPage
 }: LayoutInterface) => {
   let body
   if (isLoading) {
     body = <Loader />
   } else if (!shouldHaveAccess) {
-    body = <AccessDenied loggedIn={loggedIn} />
+    body = customAccessDeniedPage ? customAccessDeniedPage : <AccessDenied loggedIn={loggedIn} />
   } else if (hasError) {
     body = (
       <Alert

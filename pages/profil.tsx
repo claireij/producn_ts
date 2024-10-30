@@ -20,6 +20,7 @@ import { StatusEnum } from "@models/general"
 import { FaCheck } from "react-icons/fa"
 import { GrClose } from "react-icons/gr"
 import { ensureError } from "@utils/general.utils"
+import { Loader } from "@components/Loader"
 
 export default function Profil() {
   const [edit, setEdit] = useState({
@@ -47,6 +48,7 @@ export default function Profil() {
     queryKey: ["subscription"],
     queryFn: () => PaypalService.getSubscription(user.id),
     enabled: !!user,
+    retry: false
   })
 
   const achievements = [
@@ -110,7 +112,7 @@ export default function Profil() {
   return (
     <Layout
       title="Profil"
-      isLoading={status === "loading" || isLoadingUser || isLoadingSubscription}
+      isLoading={status === "loading" || isLoadingUser}
       hasError={isError || !user}
       shouldHaveAccess={!!session}
     >
@@ -239,35 +241,42 @@ export default function Profil() {
           </EditField>
 
           <Divider text="Subscription"></Divider>
-          <p className="profile__field__paragraph">{user?.subscription}</p>
 
-          <div className="profile__field__edit">
-            {subscription?.subscription_id ? (
-              <>
-                <p className="mb-2">{subscription?.subscription_id}</p>
-                <div className="flex gap-2">
-                  <Button href="/subscriptions">Change subscription</Button>
-                  <Button
-                    danger
-                    type="primary"
-                    onClick={handleSubscriptionCancellation}
-                  >
-                    Cancel Subscription
-                  </Button>
-                </div>
-              </>
-            ) : (
-              <>
-                <p>
-                  You don't have a subscription. You can choose one{" "}
-                  <Button type="link" href="/subscriptions">
-                    here
-                  </Button>
-                  .
-                </p>
-              </>
-            )}
-          </div>
+          {isLoadingSubscription ? (
+            <Loader />
+          ) : (
+            <>
+              <p className="profile__field__paragraph">{user?.subscription}</p>
+
+              <div className="profile__field__edit">
+                {subscription?.subscription_id ? (
+                  <>
+                    <p className="mb-2">{subscription?.subscription_id}</p>
+                    <div className="flex gap-2">
+                      <Button href="/subscriptions">Change subscription</Button>
+                      <Button
+                        danger
+                        type="primary"
+                        onClick={handleSubscriptionCancellation}
+                      >
+                        Cancel Subscription
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      You don't have a subscription. You can choose one{" "}
+                      <Button type="link" href="/subscriptions">
+                        here
+                      </Button>
+                      .
+                    </p>
+                  </>
+                )}
+              </div>
+            </>
+          )}
         </Form>
       </section>
     </Layout>

@@ -28,7 +28,7 @@ function Blog() {
   })
 
   const { data: categories } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["blog_categories"],
     queryFn: () => BlogService.getCategories(),
   })
 

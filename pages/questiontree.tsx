@@ -13,6 +13,8 @@ import { useSession } from "next-auth/react"
 import { useQuery } from "@tanstack/react-query"
 import { firstQuestionId } from "consts"
 import { PaypalService } from "@services/paypal.service"
+import { AccessDenied } from "@components/AccessDenied"
+import { Button } from "@components/_general/button/Button"
 
 export default function QuestionTree() {
   const [showStart, setShowStart] = useState(true)
@@ -44,6 +46,7 @@ export default function QuestionTree() {
     queryKey: ["subscription"],
     queryFn: () => PaypalService.getSubscription(session?.user?.id || ""),
     enabled: !!session?.user,
+    retry: false,
   })
 
   const handleClickStart = async () => {
@@ -91,11 +94,29 @@ export default function QuestionTree() {
     }
   }
 
+  const accessDeniedNoSubscription = (
+    <div className="flex flex-col items-center">
+      <h1>Access Denied</h1>
+      <p className="mb-5">
+        You don't have a subscription. Please subscribe to one to gain access to
+        the questiontree:
+      </p>
+      <Button type="primary" href="/subscriptions">
+        Choose Subscription
+      </Button>
+    </div>
+  )
+
+  console.log(!!subscription)
+
   return (
     <Layout
       title="Question Tree"
       isLoading={status === "loading" || isLoadingSubscription}
       shouldHaveAccess={!!session && !!session?.user?.email && !!subscription}
+      customAccessDeniedPage={
+        !subscription ? accessDeniedNoSubscription : <AccessDenied />
+      }
     >
       {showStart && <Start onClickStart={handleClickStart} />}
 

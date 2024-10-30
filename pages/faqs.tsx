@@ -22,7 +22,7 @@ export default function Faqs() {
     isLoading: isLoadingCategories,
     isError: isErrorCategories,
   } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["faq_categories"],
     queryFn: FaqService.getCategories,
   })
 
