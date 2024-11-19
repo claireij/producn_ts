@@ -116,7 +116,7 @@ You can find the app under producn.com
 
 ### Paypal Endpoints
 
-- **Endpoint**: `/api/paypal/pause`
+- **Endpoint**: `/api/user-subscription/[user_id]/cancel`
     - **METHOD**: POST
     - **DESCRIPTION**: Cancels an active PayPal subscription for a user based on their user ID. This endpoint checks if the user has an active subscription before attempting to cancel it through the PayPal API.
     - **RESQUEST BODY**: 
@@ -138,17 +138,17 @@ You can find the app under producn.com
 
 ### Subscriptions Endpoints
 
-- **Endpoint**: `/api/subscriptions/prices`
+- **Endpoint**: `/api/subscriptions`
     - **METHOD**: GET
     - **DESCRIPTION**: Retrieves the prices of the subscriptions
 
 ### UserSubscription Endpoints
 
-- **Endpoint**: `/api/userSubscription/getActiveSubscription/[user_id]`
+- **Endpoint**: `/api/user-subscription/[user_id]/active`
     - **METHOD**: GET
     - **DESCRIPTION**: Gets the active user subscription based on the user id
 
-- **Endpoint**: `/api/userSubscription/create`
+- **Endpoint**: `/api/userSubscription`
     - **METHOD**: POST
     - **DESCRIPTION**: Creates a new user subscription
 
@@ -158,15 +158,15 @@ You can find the app under producn.com
     - **METHOD**: PATCH
     - **DESCRIPTION**: Updates user to set the email confirmation to true, if the correct email confirmation string is provided
 
-- **Endpoint**: `/api/users/get/[user_email]`
+- **Endpoint**: `/api/users/[user_email]`
     - **METHOD**: GET
     - **DESCRIPTION**: Retrieves user based on user email
 
-- **Endpoint**: `/api/users/create`
+- **Endpoint**: `/api/users`
     - **METHOD**: POST
     - **DESCRIPTION**: Creates user
 
-- **Endpoint**: `/api/users/updates`
+- **Endpoint**: `/api/users`
     - **METHOD**: PATCH
     - **DESCRIPTION**: Updates user information based on the provided email. Accepts various fields to update, including password, articles_read and problems_solved.
 

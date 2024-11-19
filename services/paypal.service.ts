@@ -13,7 +13,7 @@ export const PaypalService = {
     subscription_id: string
   }) => {
     try {
-      await axios.post("/api/userSubscriptions/create", {
+      await axios.post("/api/user-subscriptions", {
         user_id: user.id,
         paypal_subscription_id: paypalSubscriptionId,
         subscription_id: subscription_id,
@@ -30,7 +30,7 @@ export const PaypalService = {
   getSubscription: async (userId: string) => {
     try {
       const response = await axios.get(
-        `/api/userSubscriptions/getActiveSubscription/${userId}`,
+        `/api/user-subscriptions/${userId}/active`,
       )
       return response.data
     } catch (error) {
@@ -41,7 +41,7 @@ export const PaypalService = {
   pauseSubscription: async (userId: string) => {
     try {
       if (!userId) throw new Error("Missing user ID.")
-      const response = await axios.post("/api/paypal/pause", {
+      const response = await axios.patch(`/api/user-subscriptions/${userId}/cancel`, {
         user_id: userId,
       })
       return response

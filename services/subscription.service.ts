@@ -5,7 +5,7 @@ import axios from "axios"
 export const SubscriptionService = {
   getSubscriptionPrices: async (): Promise<Array<SubscriptionPrice>> => {
     try {
-      const prices = await axios.get("/api/subscriptions/prices")
+      const prices = await axios.get("/api/subscriptions")
       return prices.data
     } catch (error) {
       handleAxiosError(error)

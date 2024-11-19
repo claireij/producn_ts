@@ -8,7 +8,7 @@ export const UserService = {
     emailConfirmationString: string,
   ) => {
     try {
-      const response = await axios.post("/api/users/create", {
+      const response = await axios.post("/api/users", {
         gender: userData.gender,
         firstname: userData.firstname,
         lastname: userData.lastname,
@@ -45,7 +45,7 @@ export const UserService = {
     }
 
     try {
-      const response = await axios.post("/api/users/update", {
+      const response = await axios.patch("/api/users", {
         ...(userData.email && { email: userData.email }),
         ...(userData.gender && { gender: userData.gender }),
         ...(userData.firstname && { firstname: userData.firstname }),
@@ -81,7 +81,7 @@ export const UserService = {
   },
   getUser: async (email: string) => {
     try {
-      const response = await axios.get(`/api/users/get/${email}`)
+      const response = await axios.get(`/api/users/${email}`)
       return response.data
     } catch (error) {
       handleAxiosError(error)

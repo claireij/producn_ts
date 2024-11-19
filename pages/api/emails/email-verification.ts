@@ -23,9 +23,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }),
   )
 
+  console.log(req.body.email)
+
   const mailData = {
     from: "no-reply@producn.com",
-    to: "ruppelclaire@yahoo.de",
+    to: req.body.email,
     subject: "Confirm your email.",
     text: message,
     html: html,
