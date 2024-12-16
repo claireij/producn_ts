@@ -1,12 +1,16 @@
 {
   "private": true,
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "tsc": "tsc",
     "format": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "mocha --require ts-node/register test/**/*.test.ts"
   },
   "dependencies": {
     "@paypal/react-paypal-js": "8.7.0",
@@ -40,17 +44,22 @@
   "devDependencies": {
     "@types/bcrypt": "5.0.2",
     "@types/bcryptjs": "2.4.6",
+    "@types/chai": "^5.0.1",
     "@types/express": "5.0.0",
+    "@types/mocha": "^10.0.10",
     "@types/nodemailer": "6.4.16",
     "@types/react": "18.3.11",
     "@types/supertest": "6.0.2",
     "@typescript-eslint/eslint-plugin": "8.8.0",
     "@typescript-eslint/parser": "8.8.0",
     "autoprefixer": "10.4.20",
+    "chai": "^5.1.2",
     "eslint": "9.11.1",
+    "mocha": "^10.8.2",
     "postcss": "8.4.47",
     "prettier": "3.3.3",
     "tailwindcss": "3.4.13",
+    "ts-node": "^10.9.2",
     "typescript": "5.6.2"
   }
 }
