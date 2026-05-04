@@ -9,7 +9,6 @@ export const Result = sequelize.define(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-      defaultValue: 1,
     },
     text: {
       type: DataTypes.STRING,
@@ -18,7 +17,7 @@ export const Result = sequelize.define(
     number: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: "0",
     },
   },
   {

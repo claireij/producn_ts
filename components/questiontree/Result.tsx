@@ -8,7 +8,7 @@ import { UserService } from "@services/user.service"
 import { Session } from "next-auth"
 
 interface ResultInterface {
-  resultId: string
+  resultId: Array<string>
   startAgain: () => void
   session: Session | null
 }
@@ -23,8 +23,8 @@ export const ResultDiv = ({
     isLoading: isLoadingResult,
     isError: isErrorResult,
   } = useQuery({
-    queryKey: ["result"],
-    queryFn: () => QuestionTreeService.getResultById(resultId),
+    queryKey: ["result", resultId],
+    queryFn: () => QuestionTreeService.getResult(resultId),
   })
 
   const updateUserProgress = async () => {

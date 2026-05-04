@@ -28,24 +28,20 @@ export const QuestionTreeService = {
     }
   },
 
-  getResultById: async (id: string): Promise<Result | null> => {
+  getResult: async (resultIds: Array<string>): Promise<Result | null> => {
     try {
-      const response = await axios.get(`/api/questiontree/results/${id}`)
+      const response = await axios.post(`/api/questiontree/results/${resultIds.join("")}`, {
+        resultIds,
+      })
 
-      if (response.status === 404 || !response.data) {
-        console.warn(`No result found with ID: ${id}`)
+      if (!response.data) {
         return null
       }
 
       return response.data
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response?.status === 404) {
-        console.warn(`Result with ID ${id} not found`)
-        return null
-      }
-
       handleAxiosError(error)
-      throw new Error(`Failed to fetch result with the ID of: ${id}`)
+      throw new Error(`Failed to fetch or generate result for path: ${resultIds.join("")}`)
     }
   },
 }
