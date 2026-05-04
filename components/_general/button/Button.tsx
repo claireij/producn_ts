@@ -28,39 +28,39 @@ export const Button = ({
   isDisabled = false,
   classNames = ""
 }: ButtonInterface) => {
-  const iconSized = <div className="w-5">{icon}</div>
+  const iconSized = icon ? <div className="w-5 shrink-0">{icon}</div> : null
 
-  const buttonClassNames = `rounded-lg cursor-pointer h-fit w-fit button ${type} ${danger && "danger"} ${isDisabled && "pointer-events-none"} ${classNames}`
+  const baseClasses =
+    "inline-flex items-center justify-center gap-2 border border-black border-2 bg-white px-5 py-2 text-base font-medium text-black shadow-sm shadow-black/5 transition duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-black/20 disabled:pointer-events-none disabled:opacity-50"
+
+  const hoverClasses =
+    type === "link"
+      ? "underline text-blue-600 visited:text-blue-900"
+      : "hover:-translate-y-0.5 hover:shadow-md hover:bg-gray-50"
+
+  const dangerClasses = danger
+    ? "border-red-400 text-red-500 hover:border-red-600 hover:text-red-600 hover:bg-red-50"
+    : ""
+
+  const buttonClassNames = `${baseClasses} ${hoverClasses} ${dangerClasses} ${classNames}`
 
   if (href)
     return (
-      <Link
-        href={href}
-        target={target}
-        rel={rel}
-        className={
-          type !== "link"
-            ? buttonClassNames
-            : "underline text-blue inline-block visited:text-blue-900"
-        }
-      >
-        {icon ? iconSized : <></>}
+      <Link href={href} target={target} rel={rel} className={buttonClassNames}>
+        {iconSized}
         {children}
       </Link>
     )
 
-  if (htmlType === "submit") {
-    return (
-      <button className={buttonClassNames} type="submit">
-        {children}
-      </button>
-    )
-  }
-
   return (
-    <div className={buttonClassNames} onClick={onClick}>
-      {icon ? iconSized : <></>}
+    <button
+      className={buttonClassNames}
+      type={htmlType}
+      onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+      disabled={isDisabled}
+    >
+      {iconSized}
       {children}
-    </div>
+    </button>
   )
 }

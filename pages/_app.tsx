@@ -1,5 +1,4 @@
 import "../styles/global.css"
-import "@components/_general/button/button.css"
 import "@components/_general/divider/divider.css"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 const queryClient = new QueryClient()

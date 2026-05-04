@@ -1,63 +1,87 @@
 import { Button } from "@components/_general/button/Button"
 
 export const Footer = () => {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="bg-white z-49 flex justify-between p-7 border-t border-grey mt-5 relative left-0 right-0">
-      <div id="footer-copyright">
-        <figcaption className="darkwriting">
-          Producn &#169; {new Date().getFullYear()}
-          <br />
-          All rights reserved.
-        </figcaption>
-      </div>
+    <footer className="bg-white mt-5">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="space-y-2">
+          <p
+            className="text-sm bold text-slate-950"
+            style={{ fontFamily: "Spartan, Arial, sans-serif" }}
+          >
+            producn.
+          </p>
+          <p className="text-sm text-slate-600">
+            © {currentYear} Producn — All rights reserved.
+          </p>
+        </div>
 
-      <div id="footer-legal">
-        <ul id="footer-legal-list">
-          <a href="/imprint">
-            <li>Imprint</li>
-          </a>
-          <a href="/privacy-policy">
-            <li>Privacy Policy</li>
-          </a>
-        </ul>
-      </div>
+        <nav>
+          <ul className="flex flex-wrap items-center gap-6 text-sm text-slate-700">
+            <li>
+              <a
+                href="/imprint"
+                className="transition hover:text-black"
+              >
+                Imprint
+              </a>
+            </li>
+            <li>
+              <a
+                href="/privacy-policy"
+                className="transition hover:text-black"
+              >
+                Privacy Policy
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-      <div className="flex gap-2">
-        <Button
-          target="_blank"
-          href="https://www.facebook.com"
-          rel="noreferrer"
-          icon={
-            <img
-              alt="logo-facebook"
-              src="/graphics/social_media/logo-facebook.svg"
-            />
-          }
-        ></Button>
+        <div className="flex items-center gap-3">
+          <Button
+            target="_blank"
+            href="https://www.facebook.com"
+            rel="noreferrer"
+            classNames="!w-11 !h-11 !px-0 !py-0 !rounded-full !border-black !bg-white !text-black shadow-sm hover:bg-slate-100 hover:scale-105"
+            icon={
+              <img
+                alt="logo-facebook"
+                className="h-4 w-4"
+                src="/graphics/social_media/logo-facebook.svg"
+              />
+            }
+          />
 
-        <Button
-          target="_blank"
-          href="https://www.instagram.com/producn.official/?hl=de"
-          rel="noreferrer"
-          icon={
-            <img
-              alt="logo-instagram"
-              src="/graphics/social_media/logo-instagram.svg"
-            />
-          }
-        ></Button>
+          <Button
+            target="_blank"
+            href="https://www.instagram.com/producn.official/?hl=de"
+            rel="noreferrer"
+            classNames="!w-11 !h-11 !px-0 !py-0 !rounded-full !border-black !bg-white !text-black shadow-sm hover:bg-slate-100 hover:scale-105"
+            icon={
+              <img
+                alt="logo-instagram"
+                className="h-4 w-4"
+                src="/graphics/social_media/logo-instagram.svg"
+              />
+            }
+          />
 
-        <Button
-          target="_blank"
-          href="https://www.youtube.com"
-          rel="noreferrer"
-          icon={
-            <img
-              alt="logo-youtube"
-              src="/graphics/social_media/logo-youtube.svg"
-            />
-          }
-        ></Button>
+          <Button
+            target="_blank"
+            href="https://www.youtube.com"
+            rel="noreferrer"
+            classNames="!w-11 !h-11 !px-0 !py-0 !rounded-full !border-black !bg-white !text-black shadow-sm hover:bg-slate-100 hover:scale-105"
+            icon={
+              <img
+                alt="logo-youtube"
+                className="h-4 w-4"
+                src="/graphics/social_media/logo-youtube.svg"
+              />
+            }
+          />
+        </div>
       </div>
     </footer>
   )
