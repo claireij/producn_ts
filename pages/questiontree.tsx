@@ -134,7 +134,7 @@ export default function QuestionTree() {
       {showResult && (
         <ResultDiv
           session={session}
-          resultId={resultId.join("")}
+          resultId={resultId}
           startAgain={handleClickStart}
         />
       )}
