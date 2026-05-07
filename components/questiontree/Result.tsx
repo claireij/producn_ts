@@ -48,23 +48,37 @@ export const ResultDiv = ({
         We are deeply sorry, but this result is not available yet!
       </p>
     ) : (
-      <>
+      <div className="border-l-2 border-blue pl-4">
         <p
           className="mb-5"
           id="result"
           dangerouslySetInnerHTML={{ __html: result.text }}
         ></p>
-        <ResultModal resultId={result.id} userId={session?.user?.id} />
-      </>
+      </div>
     )
 
   return (
     <div>
-      <h1 className="mb-5 font-bold">The answer to your problem is...</h1>
-      {isLoadingResult ? <Loader /> : body}
-      <Button type="primary" onClick={startAgain}>
-        Start again
-      </Button>
+      <div className="border-b-2 border-grey-200 mb-5 pb-5">
+        <h2 className="uppercase text-xs text-blue">
+          The answer to your problem is...
+        </h2>
+        {/* TODO: add result titles */}
+        <h1 className="mb-7">Some random result title</h1>
+        {isLoadingResult ? <Loader /> : body}
+      </div>
+
+      <div className="flex justify-between items-end">
+        {result && (
+          <ResultModal resultId={result.id} userId={session?.user?.id} />
+        )}
+
+        <div>
+          <Button type="primary" onClick={startAgain}>
+            Start again
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }

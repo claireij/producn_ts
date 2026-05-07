@@ -31,9 +31,7 @@ export const AnswerButton = ({
         closable
         open={showInfo}
         onOk={() => setShowInfo(!showInfo)}
-        closeIcon={
-          <AiOutlineCloseCircle onClick={() => setShowInfo(!showInfo)} />
-        }
+        onCancel={() => setShowInfo(!showInfo)}   
       >
         Here is some info
       </Modal>

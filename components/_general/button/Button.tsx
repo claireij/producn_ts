@@ -31,7 +31,7 @@ export const Button = ({
   const iconSized = icon ? <div className="w-5 shrink-0">{icon}</div> : null
 
   const baseClasses =
-    "inline-flex items-center justify-center gap-2 border border-black border-2 bg-white px-5 py-2 text-base font-medium text-black shadow-sm shadow-black/5 transition duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-black/20 disabled:pointer-events-none disabled:opacity-50"
+    "inline-flex items-center justify-center gap-2 border border-2 px-5 py-2 text-base font-medium text-black shadow-sm shadow-black/5 transition duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-black/20 disabled:pointer-events-none disabled:opacity-50"
 
   const hoverClasses =
     type === "link"
@@ -42,7 +42,9 @@ export const Button = ({
     ? "border-red-400 text-red-500 hover:border-red-600 hover:text-red-600 hover:bg-red-50"
     : ""
 
-  const buttonClassNames = `${baseClasses} ${hoverClasses} ${dangerClasses} ${classNames}`
+  const primaryClasses = type === "primary" ? "bg-blue border-blue text-white hover:bg-blue-600 hover:border-blue-600" : "border-black bg-white"
+
+  const buttonClassNames = `${baseClasses} ${hoverClasses} ${dangerClasses} ${primaryClasses} ${classNames}`
 
   if (href)
     return (
@@ -56,7 +58,7 @@ export const Button = ({
     <button
       className={buttonClassNames}
       type={htmlType}
-      onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+      onClick={onClick as React.MouseEventHandler}
       disabled={isDisabled}
     >
       {iconSized}

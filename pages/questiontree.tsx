@@ -112,6 +112,7 @@ export default function QuestionTree() {
   return (
     <Layout
       title="Question Tree"
+      showTitle={false}
       isLoading={status === "loading" || isLoadingSubscription}
       shouldHaveAccess={!!session && !!session?.user?.email && !!subscription}
       customAccessDeniedPage={
