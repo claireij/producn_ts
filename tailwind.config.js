@@ -22,7 +22,7 @@ module.exports = {
   theme: {
     colors: {
       blue: {
-        DEFAULT: "#457b9d",
+        DEFAULT: "#6366F1",
         100: "#8fafc4",
         200: "#7ca2ba",
         300: "#6a95b0",
