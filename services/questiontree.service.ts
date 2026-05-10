@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Answer, Question, Result } from "@models/questiontree"
+import { Answer, Question, Result, ResultFeedback } from "@models/questiontree"
 import { handleAxiosError } from "@utils/general.utils"
 
 export const QuestionTreeService = {
@@ -30,9 +30,12 @@ export const QuestionTreeService = {
 
   getResult: async (resultIds: Array<string>): Promise<Result | null> => {
     try {
-      const response = await axios.post(`/api/questiontree/results/${resultIds.join("")}`, {
-        resultIds,
-      })
+      const response = await axios.post(
+        `/api/questiontree/results/${resultIds.join("")}`,
+        {
+          resultIds,
+        },
+      )
 
       if (!response.data) {
         return null
@@ -41,7 +44,36 @@ export const QuestionTreeService = {
       return response.data
     } catch (error) {
       handleAxiosError(error)
-      throw new Error(`Failed to fetch or generate result for path: ${resultIds.join("")}`)
+      throw new Error(
+        `Failed to fetch or generate result for path: ${resultIds.join("")}`,
+      )
+    }
+  },
+  createFeedback: async ({
+    resultId,
+    userId,
+    rating,
+    explanation,
+  }: ResultFeedback) => {
+    try {
+      await axios.post(`/api/questiontree/feedback`, {
+        resultId: resultId,
+        rating: rating,
+        explanation: explanation,
+        userId: userId,
+      })
+    } catch (error) {
+      const axiosErrorResult = handleAxiosError(error)
+
+      if (axiosErrorResult) {
+        throw new Error(
+          `Failed to send feedback for result ID ${resultId}: ${axiosErrorResult.message} (status: ${axiosErrorResult.status})`,
+        )
+      }
+
+      throw new Error(
+        `Failed to send feedback for result with the ID of: ${resultId}`,
+      )
     }
   },
 }

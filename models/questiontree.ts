@@ -15,8 +15,8 @@ export type Result = {
 }
 
 export type ResultFeedback = {
-  helpful: boolean
+  rating: boolean
+  explanation: string
   resultId: string
   userId: string
-  feedback: string
 }
