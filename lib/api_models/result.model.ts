@@ -1,7 +1,21 @@
-import { DataTypes } from "sequelize"
+import { DataTypes, Model, Optional } from "sequelize"
 import { sequelize } from "../../pages/api/sequelize"
 
-export const Result = sequelize.define(
+export interface ResultAttributes {
+  id: number;
+  text: string;
+  number: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+interface ResultCreationAttributes extends Optional<ResultAttributes, 'id'> {}
+
+interface ResultInstance
+  extends Model<ResultAttributes, ResultCreationAttributes>,
+    ResultAttributes {}
+
+export const Result = sequelize.define<ResultInstance>(
   "Result",
   {
     id: {

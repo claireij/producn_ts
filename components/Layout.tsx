@@ -27,13 +27,17 @@ export const Layout = ({
   shouldHaveAccess = true,
   loggedIn = false,
   centered = true,
-  customAccessDeniedPage
+  customAccessDeniedPage,
 }: LayoutInterface) => {
   let body
   if (isLoading) {
     body = <Loader />
   } else if (!shouldHaveAccess) {
-    body = customAccessDeniedPage ? customAccessDeniedPage : <AccessDenied loggedIn={loggedIn} />
+    body = customAccessDeniedPage ? (
+      customAccessDeniedPage
+    ) : (
+      <AccessDenied loggedIn={loggedIn} />
+    )
   } else if (hasError) {
     body = (
       <Alert
@@ -50,9 +54,13 @@ export const Layout = ({
   return (
     <div className="bg-grey flex flex-col min-h-screen justify-between">
       <Header title={title + " - Producn"} />
-      <div className={`mx-10 bg-white rounded p-10 shadow min-h-[600px] ${centered ? "flex flex-col items-center" : ""}`}>
-        {showTitle && shouldHaveAccess && <h1>{title}</h1>}
-        <div className="w-full">{body}</div>
+      <div className="flex justify-center">
+        <div
+          className={`mx-10 bg-white rounded p-10 shadow min-h-[600px] max-w-[784px] ${centered ? "flex flex-col items-center gap-7" : ""}`}
+        >
+          {showTitle && shouldHaveAccess && <h1>{title}</h1>}
+          <div className="w-full">{body}</div>
+        </div>
       </div>
       <Footer />
     </div>

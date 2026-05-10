@@ -7,23 +7,22 @@ interface StartInterface {
 
 export const Start = ({ onClickStart }: StartInterface) => {
   return (
-    <div className="flex flex-col justify-center items-center gap-3">
-      <p>
-        Hello!
-        <br />
-        <br />
-        You're about to use our question tree to solve your music production
-        problems. Your answers will be carefully analysed and you'll learn about
-        the plausible reasons for your problems and what solution we think would
-        work best to resolve them!
-      </p>
-      <img
-        loading="lazy"
-        id="questiontree-start-image"
-        src="/images/girl_producn.png"
-        alt="Producn girl producing music"
-        className="w-[150px]"
-      />
+    <div className="flex flex-col justify-center items-center gap-10">
+      <div className="flex gap-7">
+         <img
+          loading="lazy"
+          id="questiontree-start-image"
+          src="/images/girl_producn.png"
+          alt="Producn girl producing music"
+          className="w-[150px]"
+        />
+        <p>
+          Hello!
+          <br />
+          <br />
+          Get a personalized diagnosis for your music production problem. Answer a few questions and we'll pinpoint exactly what's holding you back — and how to fix it.
+        </p>
+      </div>
 
       <Button type="primary" onClick={onClickStart}>
         Start!

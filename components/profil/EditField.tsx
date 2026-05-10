@@ -28,12 +28,11 @@ export const EditField = ({
 
       <Modal
         isSubmit={true}
-        closeIcon={<AiOutlineCloseCircle onClick={onClick} />}
-        title={title}
+        onCancel={onClick}
+        title={<h1>{title}</h1>}
         open={isOpen}
         okText="Save"
         closable
-        onCancel={onClick}
         onOk={() => {}}
       >
         <div className="flex flex-col gap-3">{children}</div>
